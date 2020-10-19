@@ -1,5 +1,6 @@
 package demoPackage;
 
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -9,12 +10,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import resources.Resources;
+
 public class Scope {
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, IOException {
 		
+		Resources resource= new Resources();
 		System.setProperty("webdriver.chrome.driver",
-				"C:\\Users\\Ammu\\Downloads\\chromedriver_win32\\ChromeDriver.exe");
+				resource.getPropertyObject("data.properties").getProperty("ChromeBrowserPath"));
 		WebDriver driver= new ChromeDriver();
 		driver.get("http://qaclickacademy.com/practice.php");
 		System.out.println(driver.findElements(By.tagName("a")).size());//count of links on page
@@ -38,7 +42,9 @@ public class Scope {
 				System.out.println(driver.getTitle());
 					
 			}
+			driver.quit();
 		
 	}
+	
 
 }

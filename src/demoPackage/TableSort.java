@@ -1,5 +1,6 @@
 package demoPackage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,11 +11,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 
+import resources.Resources;
+
 public class TableSort {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
+		Resources resource= new Resources();
 		System.setProperty("webdriver.chrome.driver",
-				"C:\\Users\\Ammu\\Downloads\\chromedriver_win32\\ChromeDriver.exe");
+				resource.getPropertyObject("data.properties").getProperty("ChromeBrowserPath"));
 		WebDriver driver= new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get("https://rahulshettyacademy.com/seleniumPractise/#/offers");
@@ -37,7 +41,7 @@ public class TableSort {
 		Collections.sort(copiedList);
 		Collections.reverse(copiedList);//code to descend the list
 		System.out.println(copiedList);
-		Assert.assertTrue(originalList.equals(copiedList));
+		Assert.assertFalse(originalList.equals(copiedList));
 		
 		driver.close();
 	}

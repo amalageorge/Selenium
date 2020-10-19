@@ -1,5 +1,6 @@
 package demoPackage;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -7,12 +8,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import resources.Resources;
+
 public class Grids {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		int sum=0;
+		Resources resource= new Resources();
 		System.setProperty("webdriver.chrome.driver",
-				"C:\\Users\\Ammu\\Downloads\\chromedriver_win32\\ChromeDriver.exe");
+				resource.getPropertyObject("data.properties").getProperty("ChromeBrowserPath"));
 		WebDriver driver= new ChromeDriver();
 		driver.get("https://www.cricbuzz.com/live-cricket-scorecard/23253/eng-vs-pak-3rd-t20i-pakistan-tour-of-england-2020");
 		WebElement table=driver.findElement(By.cssSelector("div[class='cb-col cb-col-100 cb-ltst-wgt-hdr']"));

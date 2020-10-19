@@ -1,18 +1,23 @@
 package demoPackage;
 
+import java.io.IOException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import resources.Resources;
+
 public class JavascriptExe {
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, IOException {
 		//Enter the letters BENG
 		//Verify if we get airport option
+		Resources resource= new Resources();
 		System.setProperty("webdriver.chrome.driver",
-				"C:\\Users\\Ammu\\Downloads\\chromedriver_win32\\ChromeDriver.exe");
+				resource.getPropertyObject("data.properties").getProperty("ChromeBrowserPath"));
 		WebDriver driver= new ChromeDriver();
 		driver.get("https://www.ksrtc.in");
 		driver.findElement(By.xpath("//input[@id='fromPlaceName']")).sendKeys("Beng");

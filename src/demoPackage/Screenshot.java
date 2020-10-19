@@ -9,18 +9,21 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import resources.Resources;
+
 public class Screenshot {
 
 	public static void main(String[] args) throws IOException {
+		Resources resource= new Resources();
 		System.setProperty("webdriver.chrome.driver",
-				"C:\\Users\\Ammu\\Downloads\\chromedriver_win32\\ChromeDriver.exe");
+				resource.getPropertyObject("data.properties").getProperty("ChromeBrowserPath"));
 		WebDriver driver= new ChromeDriver();
 		driver.manage().window().maximize();
 		//driver.manage().deleteAllCookies();    //delete all cookies
 		//driver.manage().deleteCookieNamed("asdf");   //delete particular cookie
 		driver.get("http://qaclickacademy.com/practice.php");
 		File src=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(src, new File("C:\\Users\\Ammu\\screenshot.png"));
+		FileUtils.copyFile(src, new File(resource.getScreenshotDirectory() + "screenshot.png"));
 		driver.close();
 	}
 

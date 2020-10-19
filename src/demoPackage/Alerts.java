@@ -1,14 +1,19 @@
 package demoPackage;
 
+import java.io.IOException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import resources.Resources;
+
 public class Alerts {
 
-	public static void main(String[] args) {
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Ammu\\Downloads\\chromedriver_win32\\ChromeDriver.exe");
-		WebDriver driver =  new ChromeDriver();
+	public static void main(String[] args) throws IOException {
+		Resources resource= new Resources();
+		System.setProperty("webdriver.chrome.driver",
+				resource.getPropertyObject("data.properties").getProperty("ChromeBrowserPath"));WebDriver driver =  new ChromeDriver();
 		driver.get("https://rahulshettyacademy.com/AutomationPractice/");
 		driver.findElement(By.id("name")).sendKeys("Amala");
 		//driver.findElement(By.id("alertbtn")).click();

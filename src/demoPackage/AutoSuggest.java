@@ -1,5 +1,6 @@
 package demoPackage;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -7,11 +8,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import resources.Resources;
+
 public class AutoSuggest {
 
-	public static void main(String[] args) throws InterruptedException {
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Ammu\\Downloads\\chromedriver_win32\\ChromeDriver.exe");
-		WebDriver driver =  new ChromeDriver();
+	public static void main(String[] args) throws InterruptedException, IOException {
+		Resources resource= new Resources();
+		System.setProperty("webdriver.chrome.driver",
+				resource.getPropertyObject("data.properties").getProperty("ChromeBrowserPath"));WebDriver driver =  new ChromeDriver();
 		driver.get("https://rahulshettyacademy.com/dropdownsPractise/");
 		driver.findElement(By.id("autosuggest")).sendKeys("Ind");
 		Thread.sleep(3000);

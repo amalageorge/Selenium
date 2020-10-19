@@ -1,14 +1,19 @@
 package demoPackage;
 
+import java.io.IOException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import resources.Resources;
+
 public class Assessment5 {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
+		Resources resource= new Resources();
 		System.setProperty("webdriver.chrome.driver",
-				"C:\\Users\\Ammu\\Downloads\\chromedriver_win32\\ChromeDriver.exe");
+				resource.getPropertyObject("data.properties").getProperty("ChromeBrowserPath"));
 		WebDriver driver= new ChromeDriver();
 		driver.get("https://the-internet.herokuapp.com");
 		driver.findElement(By.xpath("//a[text()='Nested Frames']")).click();
