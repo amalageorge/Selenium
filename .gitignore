@@ -85,5 +85,4 @@ nb-configuration.xml
 .DS_Store
 
 ## Custom
-output/*
 src/resources/data.properties
